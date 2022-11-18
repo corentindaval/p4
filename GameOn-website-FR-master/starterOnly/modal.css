@@ -153,6 +153,18 @@ main {
   background: #3876ac;
 }
 */
+
+/*ajout de mise en page pour message de confirmation*/
+.confirm-message{
+    position:absolute;
+    top:50%;
+    left:0;
+    transform:translate(8%,-50%);
+    width:86%;
+    text-align:center;
+
+}
+
 .smFont {
   font-size: 16px;
 }
