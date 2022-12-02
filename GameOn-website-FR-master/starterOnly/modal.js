@@ -66,25 +66,33 @@ const ischecked = (element) => {
 const validation = (element) => {
     const input = element.querySelectorAll("input");
     let erreur = isempty(input[0].value.trim());
+    console.log("0");
     switch (input[0].name) {
         case "first":
+            console.log("totaux");
         case "last":
             erreur = (!erreur) ? aslength(input[0].value.trim(), 2) : erreur;
+            console.log("1");
             break;
         case "email":
             erreur = (!erreur) ? valid(input[0], /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/) : erreur;
+            console.log("2");
             break;
         case "birthdate":
             erreur = (!erreur) ? valid(input[0], /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/) : erreur;
+            console.log("3");
             break;
         case "quantity":
             erreur = (!erreur) ? isinteger(input[0].value.trim()) : erreur;
+            console.log("4");
             break;
         case "location":
             erreur = ischecked(input);
+            console.log("5");
             break;
         case "cgu":
             erreur = ischecked(input);
+            console.log("6");
         default:
             break;
 
@@ -116,16 +124,17 @@ const confirmation = (message) => {
 };
 
 //listener
-
-form.addEventListener("submit", (e) => {
+const btnSubmit =document.querySelector(".btn-submit");
+btnSubmit.addEventListener("click", (e) => {
     e.preventDefault();
     const formdataelements = e.target.querySelectorAll(".formData");
-    let erreur;
+    let erreur=false;
     for (let i = 0; i < formdataelements.length; i++) {
         validation(formdataelements[i]);
         erreur = validation(formdataelements[i]);
     }
-    if (!erreur) confirmation("merci,votre reservation a ete effectuer.");
+    console.log(erreur);
+    if (erreur){ confirmation("merci,votre reservation a ete effectuer.");}
 });
 
 
