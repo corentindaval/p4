@@ -30,6 +30,48 @@ img {
   padding-right: 1rem;
 }
 
+.erreurlocation{
+    display:none;
+    color:red;
+     font-size:15px;
+}
+
+.erreurprenom{
+    display:none;
+    color:red;
+    font-size:15px;
+}
+
+.erreurnom{
+    display:none;
+    color:red;
+    font-size:15px;
+}
+
+.erreurbirthdate{
+    display:none;
+    color:red;
+    font-size:15px;
+}
+
+.erreurquantity{
+    display:none;
+    color:red;
+    font-size:15px;
+}
+
+.erreurcgu{
+    display:none;
+    color:red;
+    font-size:15px;
+}
+
+.erreurmail{
+    display:none;
+    color:red;
+    font-size:15px;
+}
+
 .topnav {
   overflow: hidden;
   margin: 3.5%;
