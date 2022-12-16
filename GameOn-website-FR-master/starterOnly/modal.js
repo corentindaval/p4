@@ -225,7 +225,7 @@ function checkcgu(){
             }
         }
       
-
+/*
 //verif formulaire valide
 const validation = (element) => {
     const input = element.querySelectorAll("input");
@@ -284,7 +284,7 @@ const validation = (element) => {
     }
 
 };
-
+*/
 
 
 
