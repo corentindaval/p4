@@ -51,7 +51,19 @@
           je m'inscris
         </button>
       </div>
-
+        <!--modal-confirmation-->
+        <div class="confirm">
+            <div class="content-confirm">
+            <span class="close"></span>
+                <div class="modal-body-confirm">
+                    <p class="txtconfirm">merci pour</br> votre inscription</p>
+                    <input class="btn-confirm"
+                           type="button"
+                           value="Fermer" />
+                </div>
+            </div>
+        </div>
+        <!--modal-formulaire-->
       <div class="bground">
         <div class="content">
           <span class="close"></span>
@@ -72,7 +84,9 @@
                   name="first"
                   minlength="2"
                 />
+                  <!--messages d'erreurs -->
                   <div class="erreurprenom">veuillez entrer 2 caracteres</div>
+                  <div class="erreurprenomvide">veuiller remplir ce champ</div>
                   <br>
               </div>
               <div
@@ -84,7 +98,9 @@
                   id="last"
                   name="last"
                 />
+                  <!--messages d'erreurs -->
                   <div class="erreurnom">veuillez entrer 2 caracteres</div>
+                  <div class="erreurnomvide">veuiller remplir ce champ</div>
                   <br>
               </div>
               <div
@@ -96,7 +112,9 @@
                   id="email"
                   name="email"
                 />
+                  <!--messages d'erreurs -->
                   <div class="erreurmail">veuillez entrer une adresse mail valide</div>
+                  <div class="erreurmailvide">veuiller remplir ce champ</div>
                   <br>
               </div>
               <div
@@ -108,14 +126,19 @@
                   id="birthdate"
                   name="birthdate"
                 />
+                  <!--messages d'erreurs -->
                   <div class="erreurbirthdate">veuillez entrer une date de naissance valide</div>
+                  <div class="erreurbirthdatevide">veuiller remplir ce champ</div>
+                  <div class="erreurbirthdatesup">veuiller entrer une date inferieur a la date actuel</div>
                   <br>
               </div>
               <div
                 class="formData">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control quantity" id="quantity" name="quantity" min="0" max="99">
+                  <!--messages d'erreurs -->
                   <div class="erreurquantity">veuillez entrer un entier</div>
+                  <div class="erreurquantityvide">veuiller remplir ce champ</div>
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
@@ -188,9 +211,11 @@
                   Portland</label
                 >
               </div>
+                <!--messages d'erreurs -->
                 <div class="erreurlocation">veuillez choisir une option.</div>
               <div
                 class="formData">
+                  <!--messages d'erreurs -->
                   <div class="erreurcgu">veuillez accepter les cgu</div>
                 <input
                   class="checkbox-input cgu"

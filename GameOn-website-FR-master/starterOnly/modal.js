@@ -22,75 +22,64 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-//fermeture modale
+//fermeture modal
 const closemodale = () => modalbg.style.display = "none";
 
 modalclose.forEach((btn) => btn.addEventListener("click", closemodale));
 
-//verif si vide
+//vérif si vide
 const isempty = (element) => {
-    if (element === "" || element === null) return "élément non rempli";
+    if (element === "" || element === null) return "true";
 };
 
-function verifcompl(){
-    const elementprenom=document.querySelector('.firstname');
-    const elementnom=document.querySelector('.name');
-    const elementmail=document.querySelector('.email');
-    const elementbirthdate=document.querySelector('.birthdate');
-    const elementquantity=document.querySelector('.quantity');
-    if(elementprenom===null || elementnom===null || elementmail===null || elementbirthdate===null || elementquantity===null){
-        return false;
-    }else{
-        return true;
-    }
-
-
-}
-
-//verif nb caractere
+//vérif nb caractères
 const aslength = (element, min=1) => {
     const elementlength = element.length;
     if (elementlength < min && elementlength != 0) return "le champs doit contenir au moins 2 caracteres";
 };
 
+//vérif du prénom
 function checkFirstName(){
     const element=document.querySelector('.firstname');
     const firstname =document.querySelector('#first');
-
-    if(firstname.value.length<2){
-        console.log("test");
-        // element.dataset.error="veuiller entrer plus de 2 caracteres";
-        document.querySelector(".erreurprenom").style.display="block";
+    if(isempty(firstname.value)==="true"){//vérif si le champ prénom est vide
+        document.querySelector(".erreurprenomvide").style.display="block";
         element.dataset.errorVisible=true;
         return false;
     }else{
-      //  element.removeAttribute("data-error");
-        //element.dataset.errorVisible=false;
-        document.querySelector(".erreurprenom").style.display="none";
-        return true;
+        document.querySelector(".erreurprenomvide").style.display="none";
+        if(firstname.value.length<2){//vérif si le champ prénom contient + de 2 caractères
+            document.querySelector(".erreurprenom").style.display="block";
+            element.dataset.errorVisible=true;
+            return false;
+        }else{//pas d'erreur pour le champ prénom
+            document.querySelector(".erreurprenom").style.display="none";
+            return true;
+        }
     }
-
 };
 
+//vérif du nom
 function checkName(){
     const element=document.querySelector('.name');
     const firstname =document.querySelector('#last');
-
-    if(firstname.value.length<2){
-      //  element.dataset.error="veuiller entrer plus de 2 caracteres";
-        // element.dataset.error=true;
-        document.querySelector(".erreurnom").style.display="block";
+    if(isempty(firstname.value)==="true"){//vérif si le champ nom est vide
+        document.querySelector(".erreurnomvide").style.display="block";
+        element.dataset.errorVisible=true;
         return false;
     }else{
-       // element.removeAttribute("data-error");
-        //element.dataset.errorVisible=false;
-        document.querySelector(".erreurnom").style.display="none";
-        return true;
+        document.querySelector(".erreurnomvide").style.display="none";
+        if(firstname.value.length<2){//vérif si le champ nom contient + de 2 caracteres
+            document.querySelector(".erreurnom").style.display="block";
+            return false;
+        }else{//pas d'erreur dans le champ nom
+            document.querySelector(".erreurnom").style.display="none";
+            return true;
+        }
     }
-
 };
 
-//verif validiter
+//vérif validité
 const valid = (element, reg) => {
     const regex = new RegExp(reg);
     const test = regex.test(element.value.trim());
@@ -99,224 +88,161 @@ const valid = (element, reg) => {
 
     };
 
+//vérif de l'adresse mail
 function checkmail(){
     const reg= /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     const regex = new RegExp(reg);
     const element=document.querySelector('.email');
+    const firstname =document.querySelector('#email');
     const test = regex.test(element.value.trim());
-
-    if (!test){
-      //  element.dataset.error="${element.name} n'est pas valide";
-      //  element.dataset.error=true;
-        document.querySelector(".erreurmail").style.display="block";
+    if(isempty(firstname.value)==="true"){//vérif si le champ email est vide
+        document.querySelector(".erreurmailvide").style.display="block";
+        element.dataset.errorVisible=true;
         return false;
-        //return "${element.name} n'est pas valide"
     }else{
-      //  element.removeAttribute("data-error");
-      //  element.dataset.errorVisible=false;
-        document.querySelector(".erreurmail").style.display="none";
-        return true;
+        document.querySelector(".erreurmailvide").style.display="none";
+        if (!test){//vérif si le champ email contient une adresse valide
+            document.querySelector(".erreurmail").style.display="block";
+            return false;
+        }else{//pas d'erreur pour le champ email
+            document.querySelector(".erreurmail").style.display="none";
+            return true;
 
-    };
-
+        };
+    }
 };
 
+//vérif de la date d'anniversaire
 function checkbirthdate(){
     const element=document.querySelector('.birthdate');
     const firstname =document.querySelector('#birthdate');
+    let datesystem=new Date();
+    datesystem.toLocaleDateString("fr");
+    const dateactuel=datesystem.getFullYear()+"-"+datesystem.getMonth()+"-"+datesystem.getDate();
     const reg=/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
     const regex = new RegExp(reg);
     const test = regex.test(element.value.trim());
-
-    if (!test){
-     //   element.dataset.error="${element.name} n'est pas valide";
-       // element.dataset.error=true;
-        document.querySelector(".erreurbirthdate").style.display="block";
+    if(isempty(firstname.value)==="true"){//vérif si le champ birthdate est vide
+        document.querySelector(".erreurbirthdatevide").style.display="block";
+        element.dataset.errorVisible=true;
         return false;
-        //return "${element.name} n'est pas valide"
     }else{
-      //  element.removeAttribute("data-error");
-        //element.dataset.errorVisible=false;
-        document.querySelector(".erreurbirthdate").style.display="none";
-        return true;
-
-    };
-
+        document.querySelector(".erreurbirthdatevide").style.display="none";
+        if (!test){//vérif si le contenu du champ birthdate a un format valide
+            document.querySelector(".erreurbirthdate").style.display="block";
+            return false;
+        }else{
+            document.querySelector(".erreurbirthdate").style.display="none";
+            if(firstname.value>dateactuel){//vérif si la date entrée est antérieure à la date actuelle
+                document.querySelector(".erreurbirthdatesup").style.display="block";
+                return false;
+            }else{//pas d'erreur pour le champ birthdate
+                document.querySelector(".erreurbirthdatesup").style.display="none";
+                return true;
+            }
+        };
+    }
 };
 
 
 
-//verif entier
+//vérif entier
 const isinteger = (element) => {
     if (!Number.isInteger(parseInt(element))) return "cette valeur doit etre un entier";
 };
 
-
+//vérif de la quantité
 function checkquantity(){
     const element=document.querySelector('.quantity');
     const firstname =document.querySelector('#quantity');
-        if (!Number(element.value)){ 
-          //  element.dataset.error="cette valeur doit etre un entier";
-          //  element.dataset.error=true;
+    if(isempty(firstname.value)==="true"){//vérif si le champ quantity est vide
+        document.querySelector(".erreurquantityvide").style.display="block";
+        element.dataset.errorVisible=true;
+        return false;
+    }else{
+        document.querySelector(".erreurquantityvide").style.display="none";
+        if (!Number(element.value)){ //vérif si le contenu du champ quantity est un entier
             document.querySelector(".erreurquantity").style.display="block";
             return false;
-            //return "cette valeur doit etre un entier"
-        }else{
-           // element.removeAttribute("data-error");
-           // element.dataset.errorVisible=false;
+        }else{//pas d'erreur pour le champ quantity
             document.querySelector(".erreurquantity").style.display="none";
             return true;
         };
-       
-};
-
-//verif element est checker
-const ischecked = (element) => {
-    let checked = false;
-    for (let i = 0; i < element.length; i++) {
-        const input = element[i];
-        if (input.name === "cgu" && !input.checked) return "vous devez accepter les cgu";
-        if (input.checked) checked = true;
     }
-    if (!checked) return "vous devez choisir une option";
 };
 
+
+//vérif de la localisation
 function checklocation(){
     const element=document.querySelectorAll('.location');
     const firstname =document.querySelector('#location');
         let checked = false;
         for (let i = 0; i < element.length; i++) {
             const input = element[i];
-            if (input.name === "cgu" && !input.checked){
-                element[i].dataset.error="vous devez accepter les cgu";
-                element[i].dataset.error=true;
-                return false;
-                //   return "vous devez accepter les cgu";
-            }
-            if (input.checked){ 
+            if (input.checked){ //pas d'erreur pour le champ location
                 checked = true;
                 document.querySelector(".erreurlocation").style.display="none";
                 return true;
             }
         }
-        if (!checked){ 
+        if (!checked){ //erreur du champ location:pas d'option checkée
             document.querySelector(".erreurlocation").style.display="block";
             return false;
-            //return "vous devez choisir une option"
         };
 };
 
+//vérif cgu
 function checkcgu(){
     const element=document.querySelector('.cgu');
     const firstname =document.querySelector('#cgu');
         let checked = false;
-            if (!element.checked){
-               // element.dataset.error="vous devez accepter les cgu";
-               // element.dataset.error=true;
+            if (!element.checked){//erreur pour le champ cgu:case cgu non checkée
                 document.querySelector(".erreurcgu").style.display="block";
                 return false;
-                //   return "vous devez accepter les cgu";
-            } else{ 
+            } else{ //pas d'erreur dans le champ cgu
                 checked = true;
-               // element.removeAttribute("data-error");
-                //element.dataset.errorVisible=false;
                 document.querySelector(".erreurcgu").style.display="none";
                 return true;
             }
         }
-      
-/*
-//verif formulaire valide
-const validation = (element) => {
-    const input = element.querySelectorAll("input");
-    var nbtest=0;
-    let erreur = isempty(input[0].value.trim());
-    console.log("0");
-    switch (input[0].name) {
-        case "first":
-            console.log("totaux");
-            nbtest+=1;
-        case "last":
-            erreur = (!erreur) ? aslength(input[0].value.trim(), 2) : erreur;
-            console.log("1");
-            nbtest+=1;
-            break;
-        case "email":
-            erreur = (!erreur) ? valid(input[0], /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/) : erreur;
-            console.log("2");
-            nbtest+=1;
-            break;
-        case "birthdate":
-            erreur = (!erreur) ? valid(input[0], /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/) : erreur;
-            console.log("3");
-            nbtest+=1;
-            break;
-        case "quantity":
-            erreur = (!erreur) ? isinteger(input[0].value.trim()) : erreur;
-            console.log("4");
-            nbtest+=1;
-            break;
-        case "location":
-            erreur = ischecked(input);
-            console.log("5");
-            nbtest+=1;
-            nbtest+=1;
-            break;
-        case "cgu":
-            erreur = ischecked(input);
-            console.log("6");
-            nbtest+=1;
-        default:
-            break;
-
-    }
-
-    console.log("nbtest:"+nbtest);
-    if (erreur != null) {
-        element.dataset.error = erreur;
-        element.dataset.errorVisible = true;
-        return true;
-    } else {
-        element.dataset.error = "";
-        element.removeAttribute("data-error");
-        element.dataset.errorVisible = false;
-        return false;
-    }
-
-};
-*/
-
-
+   
 
 //message de confirmation
 
-const confirmation = (message) => {
-    form.style.display = "none";
-    const msg = document.createElement("p");
-    msg.classList.add("confirm-message");
-    msg.innerHTML = message;
-    document.querySelector(".modal-body").append(msg);
+function confirmation(){
+    const modform=document.querySelector(".bground");
+    const modalconfirm = document.querySelector(".confirm");
+    //ouverture modal msg confirmation
+    modform.style.display="none";
+    modalconfirm.style.display="block";
 };
 
-//listener
+//listener formulaire
 const btnSubmit =document.querySelector(".btn-submit");
 btnSubmit.addEventListener("click", (e) => {
     e.preventDefault();
     const formdataelements = document.querySelectorAll(".formData");
     let erreur=false;
-    // validation(formdataelements[i]);
-    
     if(checkFirstName()===false ||checkName()===false || checkbirthdate()===false || checkmail()===false || checklocation()===false ||checkquantity()===false || checkcgu()===false){
-        console.log(checkcgu());
         erreur=false;
     }else{
         erreur=true
     }
-  
-       // verifcompl();
-       // erreur = validation(formdataelements[i]);
-    if ( erreur){ confirmation("merci,votre reservation a ete effectuer.");}
+    if ( erreur){ confirmation();}
 });
+//fonction fermeture msg confirmation
+function fermeturemsg(){
+    const modconf=document.querySelector(".confirm");
+    modconf.style.display="none";
+}
+//listener confirmation
+const btnconfirm=document.querySelector(".btn-confirm");//fermeture par le bouton
+btnconfirm.addEventListener("click", (e) => {
+    e.preventDefault();
+    fermeturemsg();
+});
+const msgclose = document.querySelectorAll(".confirm .close");//fermeture par la croix
+msgclose.forEach((btn) => btn.addEventListener("click", fermeturemsg));
 
 
 

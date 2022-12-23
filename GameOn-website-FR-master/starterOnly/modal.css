@@ -72,6 +72,42 @@ img {
     font-size:15px;
 }
 
+.erreurprenomvide{
+     display:none;
+    color:red;
+    font-size:15px;
+}
+
+.erreurnomvide{
+     display:none;
+    color:red;
+    font-size:15px;
+}
+
+.erreurbirthdatevide{
+     display:none;
+    color:red;
+    font-size:15px;
+}
+
+.erreurquantityvide{
+     display:none;
+    color:red;
+    font-size:15px;
+}
+
+.erreurbirthdatesup{
+     display:none;
+    color:red;
+    font-size:15px;
+}
+
+.erreurmailvide{
+     display:none;
+    color:red;
+    font-size:15px;
+}
+
 .topnav {
   overflow: hidden;
   margin: 3.5%;
@@ -181,31 +217,55 @@ main {
 
 /* Modal form */
 
-/*.button {
-  background: #fe142f;
-  margin-top: 0.5em;
-  padding: 1em;
-  color: #fff;
-  border-radius: 15px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.button:hover {
-  background: #3876ac;
-}
-*/
 
 /*ajout de mise en page pour message de confirmation*/
-.confirm-message{
-    position:absolute;
-    top:50%;
-    left:0;
-    transform:translate(8%,-50%);
-    width:86%;
-    text-align:center;
 
+
+.content-confirm{
+ 
+  width: 100%;
+  max-width: 500px;
+  height:100%;
+  max-height:100%;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+  background: #232323;
+  border-radius: 10px;
+  overflow: hidden;
+   margin: 5% auto;
+  position: relative;
+  color: #fff;
+  padding-top: 10px;
 }
+
+.txtconfirm{
+    text-align:center;
+    font-size:40px;
+   margin-top:30%;
+}
+
+.btn-confirm{
+  background: #fe142f;
+  display: block;
+  margin: 0 auto;
+  border-radius: 7px;
+  font-size: 1rem;
+  padding: 12px 82px;
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+  margin-top:40%;
+}
+
+
+.modal-body-confirm {
+  padding: 15px 8%;
+  margin: 15px auto;
+}
+
+
+
+
 
 .smFont {
   font-size: 16px;
@@ -222,6 +282,19 @@ main {
   overflow: auto;
   background-color: rgba(26, 39, 156, 0.4);
 }
+
+.confirm {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(26, 39, 156, 0.4);
+}
+
 
 .content {
   margin: 5% auto;
